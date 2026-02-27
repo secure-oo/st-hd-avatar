@@ -1,9 +1,9 @@
 {
-    "display_name": "HD Avatar",
+    "display_name": "考拉头像™",
     "name": "hd-avatar",
     "version": "1.0.0",
     "description": "Replaces SillyTavern thumbnail avatars with full-resolution character images.",
-    "author": "custom",
+    "author": "secure-oo",
     "homePage": "",
     "requires": [],
     "optional": [],
