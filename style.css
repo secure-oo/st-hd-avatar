@@ -1,0 +1,14 @@
+/* HD Avatar Extension — optional quality tweaks */
+
+/* Ensure avatars render crisp at any size */
+img[data-hd-upgraded="1"] {
+    image-rendering: auto;          /* browsers choose best algo */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;    /* GPU layer → sharper on some browsers */
+}
+
+/* Remove forced max-width restrictions ST sometimes applies to chat avatars */
+#chat .mes_block img.avatar,
+#chat img[data-hd-upgraded="1"] {
+    image-rendering: -webkit-optimize-contrast; /* Safari sharpening hint */
+}

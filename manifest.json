@@ -1,0 +1,13 @@
+{
+    "display_name": "HD Avatar",
+    "name": "hd-avatar",
+    "version": "1.0.0",
+    "description": "Replaces SillyTavern thumbnail avatars with full-resolution character images.",
+    "author": "custom",
+    "homePage": "",
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "auto_update": true
+}
