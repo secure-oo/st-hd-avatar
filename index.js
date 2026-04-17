@@ -141,20 +141,31 @@
                         node.querySelectorAll?.('img').forEach(scheduleUpgrade);
                     }
                 }
+// src attribute changed on an existing img (e.g. character switch)
+if (
+    mutation.type === 'attributes' &&
+    mutation.attributeName === 'src' &&
+    mutation.target.tagName === 'IMG'
+) {
+    const img = mutation.target;
+    const currentSrc = img.getAttribute('src');｝
 
-                // src attribute changed on an existing img (e.g. character switch)
-                if (
-                    mutation.type === 'attributes' &&
-                    mutation.attributeName === 'src' &&
-                    mutation.target.tagName === 'IMG'
-                ) {
-                    const img = mutation.target;
-                    if (img.dataset.hdUpgraded && img.dataset.hdUpgraded !== 'err') {
-                        delete img.dataset.hdUpgraded;
-                        if (ioSupported) lazyObserver.unobserve(img);
-                    }
-                    scheduleUpgrade(img);
-                }
+    // 当前 src 不是缩略图格式 → 跳过（包括我们自己刚设的高清路径）
+    if (!toHDSrc(currentSrc)) continue;
+
+    // 如果 originalSrc 和当前 src 一样，说明是 error fallback 回退的，
+    // 不要重试，否则会死循环
+    if (img.dataset.originalSrc && img.dataset.originalSrc === currentSrc) {
+        continue;
+    }
+
+    // 真正的角色切换：清掉旧角色的一切记忆，重新排队
+    delete img.dataset.hdUpgraded;
+    delete img.dataset.originalSrc;
+    if (ioSupported) lazyObserver.unobserve(img);
+    scheduleUpgrade(img);
+}
+
             }
         });
 
