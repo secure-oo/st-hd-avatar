@@ -148,7 +148,7 @@ if (
     mutation.target.tagName === 'IMG'
 ) {
     const img = mutation.target;
-    const currentSrc = img.getAttribute('src');｝
+    const currentSrc = img.getAttribute('src');
 
     // 当前 src 不是缩略图格式 → 跳过（包括我们自己刚设的高清路径）
     if (!toHDSrc(currentSrc)) continue;
